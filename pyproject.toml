@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "habit-tracker"
+version = "0.1.0"
+description = "Tracking habits"
+authors = ["Nemish Mehta <23.nemishmehta@gmail.com>"]
+readme = "README.md"
+packages = [{include = "habit_tracker"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+streamlit = "^1.13.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

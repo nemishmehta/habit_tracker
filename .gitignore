@@ -128,5 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# drawio flow chart
-data/flow_chart.drawio
+# Streamlit folder
+.streamlit/
+
+# SQL folder
+sql/

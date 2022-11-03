@@ -6,18 +6,20 @@ def init_connection():
     return psycopg2.connect(**st.secrets["postgres"])
 
 @st.experimental_memo(ttl=600)
-def select_query(_conn, query):
-    with _conn.cursor() as cur:
+def select_query(query):
+    conn = init_connection()
+    with conn.cursor() as cur:
         cur.execute(query)
         return cur.fetchall()
     
 @st.experimental_memo(ttl=600)
-def insert_query(_conn, query):
-    with _conn.cursor() as cur:
+def insert_query(query):
+    conn = init_connection()
+    with conn.cursor() as cur:
         try:
             cur.execute(query)
-            _conn.commit()
-            return True
+            conn.commit()
         except Exception as e:
             print(f"{e}")
             return False
+        return True

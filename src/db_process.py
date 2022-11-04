@@ -1,18 +1,23 @@
 import streamlit as st
 import psycopg2
 
-@st.experimental_singleton
+#@st.experimental_singleton
 def init_connection():
-    return psycopg2.connect(**st.secrets["postgres"])
+    return psycopg2.connect(**st.secrets["localhost"])
 
-@st.experimental_memo(ttl=600)
+def select_query_to_check_val(query):
+    conn = init_connection()
+    with conn.cursor() as cur:
+        cur.execute(query)
+        return cur.fetchall()
+
+#@st.experimental_memo(ttl=600)
 def select_query(query):
     conn = init_connection()
     with conn.cursor() as cur:
         cur.execute(query)
         return cur.fetchall()
     
-@st.experimental_memo(ttl=600)
 def insert_query(query):
     conn = init_connection()
     with conn.cursor() as cur:

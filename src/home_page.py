@@ -11,7 +11,3 @@ if choice == "Create Account":
     create_account()
 elif choice == "Login":    
     login()
-    
-check_var = "Hello World"
-
-st.session_state
